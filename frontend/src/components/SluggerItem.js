@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export class SluggerItem extends Component {
   state = {
@@ -29,7 +30,7 @@ export class SluggerItem extends Component {
   }
 
   render() {
-    const { title, excerpt } = this.props.slugger;
+    const { id, title, excerpt } = this.props.slugger;
     const { author, imgUrl, isLoaded } = this.state;
     if (isLoaded) {
       return (
@@ -38,6 +39,8 @@ export class SluggerItem extends Component {
           <small>Review by <strong>{ author }</strong></small>
           <img style={{ width: '100%' }} src={imgUrl} alt={title.rendered} />
           <div dangerouslySetInnerHTML={{ __html: excerpt.rendered }} />
+          <Link to={`/book/${id}`}>Read slug Review</Link>
+          <hr />
         </div>
       );
     }
